@@ -47,14 +47,16 @@ export default function StickyNavbar() {
             as='a'
             href='#'
             className='mr-4 cursor-pointer py-1.5 font-bold'>
-            Flexmoney Admin Dashboard
+            Flexmoney
+            <br />
+            Admin Dashboard
           </Typography>
           <div className='flex items-center gap-4'>
             <div className='mr-4 hidden lg:block'>{navList}</div>
             <IconButton
               variant='text'
               className='ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden'
-              ripple={false}
+              ripple={true}
               onClick={() => setOpenNav(!openNav)}>
               {openNav ? (
                 <svg

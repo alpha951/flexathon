@@ -4,9 +4,13 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Form from "./components/Form";
 import Navbar from "./components/Navbar";
 import Dashboard from "./components/Dashboard";
+// import { useState } from "react";
 // import CSVData from "./components/CSVData";
 
 function App() {
+  // const [state, setState] = useState({
+  //state={state} setStore={setState}
+  // x: ''});
   return (
     <>
       <Router>
@@ -22,5 +26,10 @@ function App() {
     </>
   );
 }
+
+// setStore({
+// ...state,
+// x: 'hello'
+// })
 
 export default App;

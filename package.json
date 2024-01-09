@@ -19,7 +19,8 @@
     "heroicon": "^0.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.21.1"
+    "react-router-dom": "^6.21.1",
+    "react-search-autocomplete": "^8.5.2"
   },
   "devDependencies": {
     "@types/node": "^20.10.7",

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import {
   Card,
@@ -13,9 +14,13 @@ import {
 
 import React from "react";
 
+// import { useLocation } from "react-router-dom";
 
-
-export default function Form(props) {
+export default function Form({ selectedRow }) {
+  // const location = useLocation();
+  // const props = location.state && location.state.rowData;
+  const props = selectedRow[0];
+  console.log(selectedRow);
   const [formData, setFormData] = React.useState({
     lenderId: props.lenderId,
     merchantId: props.merchantId,

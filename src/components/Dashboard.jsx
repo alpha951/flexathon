@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 // import Dialog from "./Dialog";
 // import Expand from "./Expand";
 import React from "react";
@@ -19,7 +20,8 @@ import {
   Chip,
 } from "@material-tailwind/react";
 
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const TABLE_HEAD = [
   "Lender ",
@@ -35,7 +37,9 @@ const TABLE_HEAD = [
   "Edit",
 ];
 
-export default function Dashboard() {
+export default function Dashboard({ setSelectedRow }) {
+  const navigate = useNavigate();
+
   const [TABLE_ROWS, setTABLE_ROWS] = React.useState([]);
 
   React.useEffect(() => {
@@ -62,9 +66,9 @@ export default function Dashboard() {
     fetchData(); // Call the fetchData function when the component mounts
   }, []);
 
-  const tables = [];
+  let tables = [];
 
-  for (let i = 0; i < TABLE_ROWS.length; i++) {
+  for (let i = 0; i < TABLE_ROWS?.length; i++) {
     const element = {
       creditSchemeId: TABLE_ROWS[i].creditSchemeId,
       lenderId: TABLE_ROWS[i].lenderId,
@@ -85,16 +89,45 @@ export default function Dashboard() {
       "effectiveInterestRate",
       "displayEffectiveInterestRate",
     ];
-    for (let j = 0; j < TABLE_ROWS[i].creditSchemeVariantDataList.length; j++) {
+    for (
+      let j = 0;
+      j < TABLE_ROWS[i]?.creditSchemeVariantDataList?.length;
+      j++
+    ) {
       const element2 = { ...element };
       for (let k = 0; k < titles.length; k++) {
         element2[titles[k]] =
-          TABLE_ROWS[i].creditSchemeVariantDataList[j][titles[k]];
+          TABLE_ROWS[i]?.creditSchemeVariantDataList[j][titles[k]];
       }
       tables.push(element2);
     }
   }
   console.log(tables);
+  tables = [
+    {
+      creditSchemeId: "3232",
+      lenderId: "12",
+      lenderName: "HDFC",
+      merchantId: "4234",
+      merchantName: "doinsd",
+      offerType: "CASHBACK",
+      minLoanAmount: "slkmmd",
+      maxLoanAmount: "sdlknld",
+      offerStartDate: "dslk ",
+      offerEndDate: "",
+      creditSchemeVariantId: "3",
+      tenure: "12",
+      tenureType: "2",
+      status: "ACTIVE",
+      effectiveInterestRate: "13",
+      displayEffectiveInterestRate: "1",
+    },
+  ];
+  // function handleEditClick(rowData) {
+  //   // Navigate to the edit page with the rowData as state
+  //   navigate("/edit-page", { state: { rowData } });
+  // }
+
   return (
     <>
       <Card
@@ -146,6 +179,7 @@ export default function Dashboard() {
               {tables.map(
                 (
                   {
+                    lenderId,
                     lenderName,
                     merchantName,
                     offerType,
@@ -273,28 +307,19 @@ export default function Dashboard() {
                           </Tooltip>
                         </td>
                         <td className={classes}>
-                          <Link
-                            to={{
-                              pathname: `/edit-offer/${creditSchemeVariantId}`, // Specify your edit page path
-                              state: {
-                                lenderName,
-                                merchantName,
-                                offerType,
-                                tenure,
-                                tenureType,
-                                status,
-                                minLoanAmount,
-                                maxLoanAmount,
-                                offerStartDate,
-                                offerEndDate,
-                                effectiveInterestRate,
-                                creditSchemeVariantId,
-                              },
-                            }}
-                          />
-                          <Tooltip content='Edit'>
-                            <PencilIcon className='h-4 w-4' />
-                          </Tooltip>
+                          <Button
+                            onClick={() => {
+                              setSelectedRow(
+                                tables.filter((table) => {
+                                  return table.lenderId === lenderId;
+                                })
+                              );
+                              navigate("/edit-page");
+                            }}>
+                            <Tooltip content='Edit'>
+                              <PencilIcon className='h-4 w-4' />
+                            </Tooltip>
+                          </Button>
                         </td>
                         {/* <Expand /> */}
                       </tr>

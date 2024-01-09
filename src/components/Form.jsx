@@ -30,6 +30,7 @@ export default function Form() {
     maxLoanAmount: "",
     offerStartDate: "",
     offerEndDate: "",
+    funding: "",
   });
 
   const handleSelectLenderChange = (e) => {
@@ -46,16 +47,21 @@ export default function Form() {
     setFormData((prevData) => ({ ...prevData, ["offerType"]: e }));
   };
 
+  const handleSelectFundingChange = (e) => {
+    console.log(e);
+    setFormData((prevData) => ({ ...prevData, ["funding"]: e }));
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
   const handleSubmit = async () => {
-    // Validate age
+    console.log(formData);
     try {
       console.log(JSON.stringify(formData));
-      const url = "";
+      const url = "/app/dash/offers/insert";
       const response = await fetch(url, {
         method: "POST",
         headers: {
@@ -68,12 +74,10 @@ export default function Form() {
       console.log(data.error.explanation);
 
       // Handle success or show an alert
-      if (data.success === true) toast.success(data.message);
-      else toast.error(data.error.explanation);
     } catch (error) {
-      toast.error("Something went wrong!");
+      console.log(error);
     } finally {
-      setLoading(false);
+      // setLoading(false);
     }
   };
 
@@ -132,12 +136,6 @@ export default function Form() {
     fetchData(); // Call the fetchData function when the component mounts
   }, []);
 
-  // const handleOnSelect = (item) => {
-  //   // the item selected
-  //   setMerchantName(item.merchantName);
-  //   console.log(item);
-  // };
-
   return (
     <>
       <Card
@@ -167,6 +165,7 @@ export default function Form() {
               <Select
                 color='zinc-400'
                 label='Select Lender'
+                name='lenderId'
                 value={formData.lenderId}
                 onChange={handleSelectLenderChange}>
                 {lender.map((item) => (
@@ -188,7 +187,8 @@ export default function Form() {
               <Select
                 color='zinc-400'
                 label='Select Merchant'
-                value={formData.merchantId}>
+                name='merchantId'
+                value={formData.merchantId}
                 onChange={handleSelectMerchantChange}>
                 {merchant.map((item) => (
                   <Option
@@ -211,6 +211,7 @@ export default function Form() {
                 size='lg'
                 placeholder='16%'
                 className=' !border-t-blue-gray-200 focus:!border-t-gray-900'
+                name='interestRate'
                 labelProps={{
                   className: "before:content-none after:content-none",
                 }}
@@ -228,6 +229,7 @@ export default function Form() {
                 size='lg'
                 placeholder='0%'
                 className=' !border-t-blue-gray-200 focus:!border-t-gray-900'
+                name='displayInterestRate'
                 labelProps={{
                   className: "before:content-none after:content-none",
                 }}
@@ -245,6 +247,7 @@ export default function Form() {
                 type='text'
                 size='lg'
                 placeholder='30 days'
+                name='tenure'
                 className=' !border-t-blue-gray-200 focus:!border-t-gray-900'
                 labelProps={{
                   className: "before:content-none after:content-none",
@@ -262,6 +265,7 @@ export default function Form() {
                 type='text'
                 size='lg'
                 placeholder='2000'
+                name='maxLoanAmount'
                 className=' !border-t-blue-gray-200 focus:!border-t-gray-900'
                 labelProps={{
                   className: "before:content-none after:content-none",
@@ -279,6 +283,8 @@ export default function Form() {
                 type='text'
                 size='md'
                 placeholder='500'
+                name='minLoanAmount'
+                onChange={handleChange}
                 className=' !border-t-blue-gray-200 focus:!border-t-gray-900'
                 labelProps={{
                   className: "before:content-none after:content-none",
@@ -294,6 +300,7 @@ export default function Form() {
               <Input
                 type='date'
                 size='md'
+                name='offerStartDate'
                 placeholder='500'
                 className=' !border-t-blue-gray-200 focus:!border-t-gray-900'
                 labelProps={{
@@ -313,6 +320,7 @@ export default function Form() {
                 type='date'
                 size='md'
                 placeholder='500'
+                name='offerEndDate'
                 className=' !border-t-blue-gray-200 focus:!border-t-gray-900'
                 labelProps={{
                   className: "before:content-none after:content-none",
@@ -331,6 +339,7 @@ export default function Form() {
                 color='zinc-400'
                 label='Select Offer type'
                 value={formData.offerType}
+                name='offerType'
                 onChange={handleSelectOfferTypeChange}>
                 <Option value='NO_COST_EMI' className='text-left'>
                   No Cost EMI
@@ -352,7 +361,12 @@ export default function Form() {
                 className='-mb-2 -mt-2 text-left'>
                 Funded By
               </Typography>
-              <Select color='zinc-400' label='Select Funding type'>
+              <Select
+                color='zinc-400'
+                label='Select Funding type'
+                name='funding'
+                value={formData.funding}
+                onChange={handleSelectFundingChange}>
                 <Option value='lender' className='text-left'>
                   Lender
                 </Option>

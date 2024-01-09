@@ -11,7 +11,62 @@ import {
   Option,
 } from "@material-tailwind/react";
 
+import React from "react";
+
 export default function Form(props) {
+  const [formData, setFormData] = React.useState({
+    lenderId: props.lenderId,
+    merchantId: props.merchantId,
+    offerType: props.offerType,
+    interestRate: props.interestRate,
+    displayInterestRate: props.displayInterestRate,
+    tenure: props.tenure,
+    minLoanAmount: props.minLoanAmount,
+    maxLoanAmount: props.maxLoanAmount,
+    offerStartDate: props.offerStartDate,
+    offerEndDate: props.offerEndDate,
+    funding: props.funding,
+  });
+
+  const handleSelectOfferTypeChange = (e) => {
+    console.log(e);
+    setFormData((prevData) => ({ ...prevData, ["offerType"]: e }));
+  };
+
+  const handleSelectFundingChange = (e) => {
+    console.log(e);
+    setFormData((prevData) => ({ ...prevData, ["funding"]: e }));
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
+  };
+
+  const handleSubmit = async () => {
+    console.log(formData);
+    try {
+      console.log(JSON.stringify(formData));
+      const url = "/app/dash/offers/update";
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+      console.log(data.error.explanation);
+
+      // Handle success or show an alert
+    } catch (error) {
+      console.log(error);
+    } finally {
+      // setLoading(false);
+    }
+  };
+
   return (
     <>
       <Card
@@ -26,7 +81,7 @@ export default function Form(props) {
           className='mb-1 grid h-14	place-items-center'
           style={{ width: "40%", margin: "0 auto" }}>
           <Typography variant='h5' color='white'>
-            Update Data
+            Edit Product
           </Typography>
         </CardHeader>
         <form className='mt-5 mb-10 w-auto max-w-screen-lg sm:w-96 '>
@@ -41,14 +96,15 @@ export default function Form(props) {
               <Input
                 type='text'
                 size='lg'
-                placeholder={props.lenderName || "Lender Name"}
-                readOnly
+                placeholder='16%'
                 className=' !border-t-blue-gray-200 focus:!border-t-gray-900'
+                name='interestRate'
                 labelProps={{
                   className: "before:content-none after:content-none",
                 }}
+                value={props.lenderId}
+                readOnly
               />
-
               <Typography
                 variant='h6'
                 color='blue-gray'
@@ -58,12 +114,14 @@ export default function Form(props) {
               <Input
                 type='text'
                 size='lg'
-                placeholder={props.merchantName || "Merchant Name"}
-                readOnly
+                placeholder='16%'
                 className=' !border-t-blue-gray-200 focus:!border-t-gray-900'
+                name='interestRate'
                 labelProps={{
                   className: "before:content-none after:content-none",
                 }}
+                value={props.merchantId}
+                readOnly
               />
 
               <Typography
@@ -75,11 +133,14 @@ export default function Form(props) {
               <Input
                 type='text'
                 size='lg'
-                placeholder={props.effectiveInterestRate}
+                placeholder='16%'
                 className=' !border-t-blue-gray-200 focus:!border-t-gray-900'
+                name='interestRate'
                 labelProps={{
                   className: "before:content-none after:content-none",
                 }}
+                value={formData.interestRate}
+                onChange={handleChange}
               />
               <Typography
                 variant='h6'
@@ -90,11 +151,14 @@ export default function Form(props) {
               <Input
                 type='text'
                 size='lg'
-                placeholder={props.displayInterestRate}
+                placeholder='0%'
                 className=' !border-t-blue-gray-200 focus:!border-t-gray-900'
+                name='displayInterestRate'
                 labelProps={{
                   className: "before:content-none after:content-none",
                 }}
+                value={formData.displayInterestRate}
+                onChange={handleChange}
               />
 
               <Typography
@@ -106,11 +170,14 @@ export default function Form(props) {
               <Input
                 type='text'
                 size='lg'
-                placeholder={props.tenure || "30 days"}
+                placeholder='30 days'
+                name='tenure'
                 className=' !border-t-blue-gray-200 focus:!border-t-gray-900'
                 labelProps={{
                   className: "before:content-none after:content-none",
                 }}
+                value={formData.tenure}
+                onChange={handleChange}
               />
               <Typography
                 variant='h6'
@@ -121,11 +188,14 @@ export default function Form(props) {
               <Input
                 type='text'
                 size='lg'
-                placeholder={props.maxLoanAmount || "2000"}
+                placeholder='2000'
+                name='maxLoanAmount'
                 className=' !border-t-blue-gray-200 focus:!border-t-gray-900'
                 labelProps={{
                   className: "before:content-none after:content-none",
                 }}
+                value={formData.maxLoanAmount}
+                onChange={handleChange}
               />
               <Typography
                 variant='h6'
@@ -136,11 +206,14 @@ export default function Form(props) {
               <Input
                 type='text'
                 size='md'
-                placeholder={props.minLoanAmount}
+                placeholder='500'
+                name='minLoanAmount'
+                onChange={handleChange}
                 className=' !border-t-blue-gray-200 focus:!border-t-gray-900'
                 labelProps={{
                   className: "before:content-none after:content-none",
                 }}
+                value={formData.minLoanAmount}
               />
               <Typography
                 variant='h6'
@@ -151,11 +224,14 @@ export default function Form(props) {
               <Input
                 type='date'
                 size='md'
-                placeholder={props.offerStartDate}
+                name='offerStartDate'
+                placeholder='500'
                 className=' !border-t-blue-gray-200 focus:!border-t-gray-900'
                 labelProps={{
                   className: "before:content-none after:content-none",
                 }}
+                value={formData.offerStartDate}
+                onChange={handleChange}
               />
 
               <Typography
@@ -167,11 +243,14 @@ export default function Form(props) {
               <Input
                 type='date'
                 size='md'
-                placeholder={props.offerEndDate}
+                placeholder='500'
+                name='offerEndDate'
                 className=' !border-t-blue-gray-200 focus:!border-t-gray-900'
                 labelProps={{
                   className: "before:content-none after:content-none",
                 }}
+                value={formData.offerEndDate}
+                onChange={handleChange}
               />
 
               <Typography
@@ -183,24 +262,46 @@ export default function Form(props) {
               <Select
                 color='zinc-400'
                 label='Select Offer type'
-                placeholder={props.offerType}>
-                <Option value='1' className='text-left'>
+                value={formData.offerType}
+                name='offerType'
+                onChange={handleSelectOfferTypeChange}>
+                <Option value='NO_COST_EMI' className='text-left'>
                   No Cost EMI
                 </Option>
-                <Option value='2' className='text-left'>
-                  Instant Cashback
+                <Option value='INSTANT' className='text-left'>
+                  Instant Discount
                 </Option>
-                <Option value='3' className='text-left'>
+                <Option value='CASHBACK' className='text-left'>
                   Deferred Cashback
                 </Option>
-                <Option value='4' className='text-left'>
+                <Option value='NO_OFFER' className='text-left'>
                   No Offer
+                </Option>
+              </Select>
+
+              <Typography
+                variant='h6'
+                color='blue-gray'
+                className='-mb-2 -mt-2 text-left'>
+                Funded By
+              </Typography>
+              <Select
+                color='zinc-400'
+                label='Select Funding type'
+                name='funding'
+                value={formData.funding}
+                onChange={handleSelectFundingChange}>
+                <Option value='lender' className='text-left'>
+                  Lender
+                </Option>
+                <Option value='merchant' className='text-left'>
+                  Merchant
                 </Option>
               </Select>
             </div>
           </CardBody>
           <CardFooter>
-            <Button className='-mt-10' fullWidth>
+            <Button className='-mt-10' fullWidth onClick={handleSubmit}>
               Update
             </Button>
           </CardFooter>

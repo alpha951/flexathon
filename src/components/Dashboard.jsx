@@ -1,6 +1,6 @@
 // import Dialog from "./Dialog";
 // import Expand from "./Expand";
-
+import React from "react";
 import {
   ArrowDownTrayIcon,
   MagnifyingGlassIcon,
@@ -115,191 +115,217 @@ const TABLE_HEAD = [
 //     status: "ACTIVE",
 //   },
 // ];
-const TABLE_ROWS = [
-  {
-    creditSchemeId: "88d06e29-50be-47e3-bd84-bf8bb51754cd",
-    lenderId: 102,
-    lenderName: "Federal Bank",
-    merchantId: null,
-    merchantName: null,
-    offerType: null,
-    minLoanAmount: null,
-    maxLoanAmount: null,
-    offerStartDate: null,
-    offerEndDate: null,
+// const TABLE_ROWS = [
+//   {
+//     creditSchemeId: "88d06e29-50be-47e3-bd84-bf8bb51754cd",
+//     lenderId: 102,
+//     lenderName: "Federal Bank",
+//     merchantId: null,
+//     merchantName: null,
+//     offerType: null,
+//     minLoanAmount: null,
+//     maxLoanAmount: null,
+//     offerStartDate: null,
+//     offerEndDate: null,
 
-    creditSchemeVariantDataList: [
-      {
-        creditSchemeVariantId: 483099,
-        tenure: 3,
-        tenureType: "MONTHS",
-        status: "ACTIVE",
-        effectiveInterestRate: 13.0,
-        displayEffectiveInterestRate: 0.0,
-      },
-      {
-        creditSchemeVariantId: 483100,
-        tenure: 6,
-        tenureType: "MONTHS",
-        status: "INACTIVE",
-        effectiveInterestRate: 13.0,
-        displayEffectiveInterestRate: 0.0,
-      },
-      {
-        creditSchemeVariantId: 483101,
-        tenure: 9,
-        tenureType: "MONTHS",
-        effectiveInterestRate: 14.5,
-        displayEffectiveInterestRate: 0.0,
-      },
-      {
-        creditSchemeVariantId: 483102,
-        tenure: 12,
-        tenureType: "MONTHS",
-        effectiveInterestRate: 15.0,
-        displayEffectiveInterestRate: 0.0,
-      },
-    ],
-  },
-  {
-    creditSchemeId: "95710e16-5969-4d56-b1bf-b57bebfe2444",
-    lenderId: 103,
-    lenderName: "IIFL",
-    merchantId: null,
-    merchantName: null,
-    offerType: null,
-    minLoanAmount: null,
-    maxLoanAmount: null,
-    offerStartDate: null,
-    offerEndDate: null,
-    creditSchemeVariantDataList: [
-      {
-        creditSchemeVariantId: 927969,
-        tenure: 3,
-        tenureType: "MONTHS",
-        status: "ACTIVE",
-        effectiveInterestRate: 24.0,
-        displayEffectiveInterestRate: 0.0,
-      },
-      {
-        creditSchemeVariantId: 927970,
-        tenure: 6,
-        tenureType: "MONTHS",
-        status: "ACTIVE",
-        effectiveInterestRate: 24.0,
-        displayEffectiveInterestRate: 0.0,
-      },
-      {
-        creditSchemeVariantId: 927971,
-        tenure: 9,
-        tenureType: "MONTHS",
-        status: "ACTIVE",
-        effectiveInterestRate: 24.0,
-        displayEffectiveInterestRate: 0.0,
-      },
-      {
-        creditSchemeVariantId: 927972,
-        tenure: 12,
-        tenureType: "MONTHS",
-        status: "ACTIVE",
-        effectiveInterestRate: 24.0,
-        displayEffectiveInterestRate: 0.0,
-      },
-    ],
-  },
-  {
-    creditSchemeId: "a36e9964-20ee-427f-aaea-d36ba7298c50",
-    lenderId: 103,
-    lenderName: "IIFL",
-    merchantName: "Toppr",
-    merchantId: 40,
-    offerType: null,
-    minLoanAmount: null,
-    maxLoanAmount: null,
-    offerStartDate: null,
-    offerEndDate: null,
+//     creditSchemeVariantDataList: [
+//       {
+//         creditSchemeVariantId: 483099,
+//         tenure: 3,
+//         tenureType: "MONTHS",
+//         status: "ACTIVE",
+//         effectiveInterestRate: 13.0,
+//         displayEffectiveInterestRate: 0.0,
+//       },
+//       {
+//         creditSchemeVariantId: 483100,
+//         tenure: 6,
+//         tenureType: "MONTHS",
+//         status: "INACTIVE",
+//         effectiveInterestRate: 13.0,
+//         displayEffectiveInterestRate: 0.0,
+//       },
+//       {
+//         creditSchemeVariantId: 483101,
+//         tenure: 9,
+//         tenureType: "MONTHS",
+//         effectiveInterestRate: 14.5,
+//         displayEffectiveInterestRate: 0.0,
+//       },
+//       {
+//         creditSchemeVariantId: 483102,
+//         tenure: 12,
+//         tenureType: "MONTHS",
+//         effectiveInterestRate: 15.0,
+//         displayEffectiveInterestRate: 0.0,
+//       },
+//     ],
+//   },
+//   {
+//     creditSchemeId: "95710e16-5969-4d56-b1bf-b57bebfe2444",
+//     lenderId: 103,
+//     lenderName: "IIFL",
+//     merchantId: null,
+//     merchantName: null,
+//     offerType: null,
+//     minLoanAmount: null,
+//     maxLoanAmount: null,
+//     offerStartDate: null,
+//     offerEndDate: null,
+//     creditSchemeVariantDataList: [
+//       {
+//         creditSchemeVariantId: 927969,
+//         tenure: 3,
+//         tenureType: "MONTHS",
+//         status: "ACTIVE",
+//         effectiveInterestRate: 24.0,
+//         displayEffectiveInterestRate: 0.0,
+//       },
+//       {
+//         creditSchemeVariantId: 927970,
+//         tenure: 6,
+//         tenureType: "MONTHS",
+//         status: "ACTIVE",
+//         effectiveInterestRate: 24.0,
+//         displayEffectiveInterestRate: 0.0,
+//       },
+//       {
+//         creditSchemeVariantId: 927971,
+//         tenure: 9,
+//         tenureType: "MONTHS",
+//         status: "ACTIVE",
+//         effectiveInterestRate: 24.0,
+//         displayEffectiveInterestRate: 0.0,
+//       },
+//       {
+//         creditSchemeVariantId: 927972,
+//         tenure: 12,
+//         tenureType: "MONTHS",
+//         status: "ACTIVE",
+//         effectiveInterestRate: 24.0,
+//         displayEffectiveInterestRate: 0.0,
+//       },
+//     ],
+//   },
+//   {
+//     creditSchemeId: "a36e9964-20ee-427f-aaea-d36ba7298c50",
+//     lenderId: 103,
+//     lenderName: "IIFL",
+//     merchantName: "Toppr",
+//     merchantId: 40,
+//     offerType: null,
+//     minLoanAmount: null,
+//     maxLoanAmount: null,
+//     offerStartDate: null,
+//     offerEndDate: null,
 
-    creditSchemeVariantDataList: [
-      {
-        creditSchemeVariantId: 500001,
-        tenure: 3,
-        tenureType: "MONTHS",
-        status: "INACTIVE",
-        effectiveInterestRate: 0.0,
-        displayEffectiveInterestRate: 0.0,
-      },
-      {
-        creditSchemeVariantId: 500002,
-        tenure: 6,
-        tenureType: "MONTHS",
-        status: "INACTIVE",
-        effectiveInterestRate: 0.0,
-        displayEffectiveInterestRate: 0.0,
-      },
-      {
-        creditSchemeVariantId: 500003,
-        tenure: 9,
-        tenureType: "MONTHS",
-        status: "INACTIVE",
-        effectiveInterestRate: 0.0,
-        displayEffectiveInterestRate: 0.0,
-      },
-    ],
-  },
-  {
-    creditSchemeId: "b557df42-aea1-4142-884f-b97b140b83c5",
-    lenderId: 103,
-    lenderName: "IIFL",
-    merchantName: "Pepperfry",
-    merchantId: 1972581,
-    offerType: null,
-    minLoanAmount: null,
-    maxLoanAmount: null,
-    offerStartDate: null,
-    offerEndDate: null,
+//     creditSchemeVariantDataList: [
+//       {
+//         creditSchemeVariantId: 500001,
+//         tenure: 3,
+//         tenureType: "MONTHS",
+//         status: "INACTIVE",
+//         effectiveInterestRate: 0.0,
+//         displayEffectiveInterestRate: 0.0,
+//       },
+//       {
+//         creditSchemeVariantId: 500002,
+//         tenure: 6,
+//         tenureType: "MONTHS",
+//         status: "INACTIVE",
+//         effectiveInterestRate: 0.0,
+//         displayEffectiveInterestRate: 0.0,
+//       },
+//       {
+//         creditSchemeVariantId: 500003,
+//         tenure: 9,
+//         tenureType: "MONTHS",
+//         status: "INACTIVE",
+//         effectiveInterestRate: 0.0,
+//         displayEffectiveInterestRate: 0.0,
+//       },
+//     ],
+//   },
+//   {
+//     creditSchemeId: "b557df42-aea1-4142-884f-b97b140b83c5",
+//     lenderId: 103,
+//     lenderName: "IIFL",
+//     merchantName: "Pepperfry",
+//     merchantId: 1972581,
+//     offerType: null,
+//     minLoanAmount: null,
+//     maxLoanAmount: null,
+//     offerStartDate: null,
+//     offerEndDate: null,
 
-    creditSchemeVariantDataList: [
-      {
-        creditSchemeVariantId: 927981,
-        tenure: 6,
-        tenureType: "MONTHS",
-        status: "ACTIVE",
-        effectiveInterestRate: 27.0,
-        displayEffectiveInterestRate: 0.0,
-      },
-      {
-        creditSchemeVariantId: 927982,
-        tenure: 9,
-        tenureType: "MONTHS",
-        status: "INACTIVE",
-        effectiveInterestRate: 27.0,
-        displayEffectiveInterestRate: 0.0,
-      },
-      {
-        creditSchemeVariantId: 927983,
-        tenure: 12,
-        tenureType: "MONTHS",
-        status: "INACTIVE",
-        effectiveInterestRate: 27.0,
-        displayEffectiveInterestRate: 0.0,
-      },
-      {
-        creditSchemeVariantId: 927980,
-        tenure: 3,
-        tenureType: "MONTHS",
-        status: "INACTIVE",
-        effectiveInterestRate: 0.0,
-        displayEffectiveInterestRate: 0.0,
-      },
-    ],
-  },
-];
+//     creditSchemeVariantDataList: [
+//       {
+//         creditSchemeVariantId: 927981,
+//         tenure: 6,
+//         tenureType: "MONTHS",
+//         status: "ACTIVE",
+//         effectiveInterestRate: 27.0,
+//         displayEffectiveInterestRate: 0.0,
+//       },
+//       {
+//         creditSchemeVariantId: 927982,
+//         tenure: 9,
+//         tenureType: "MONTHS",
+//         status: "INACTIVE",
+//         effectiveInterestRate: 27.0,
+//         displayEffectiveInterestRate: 0.0,
+//       },
+//       {
+//         creditSchemeVariantId: 927983,
+//         tenure: 12,
+//         tenureType: "MONTHS",
+//         status: "INACTIVE",
+//         effectiveInterestRate: 27.0,
+//         displayEffectiveInterestRate: 0.0,
+//       },
+//       {
+//         creditSchemeVariantId: 927980,
+//         tenure: 3,
+//         tenureType: "MONTHS",
+//         status: "INACTIVE",
+//         effectiveInterestRate: 0.0,
+//         displayEffectiveInterestRate: 0.0,
+//       },
+//     ],
+//   },
+// ];
 
 /*
   lid, mid, offtype, tenure, int_rate, disp_rate, start_date, end_date, status
 */
 
 export default function Dashboard() {
+  const [TABLE_ROWS, setTABLE_ROWS] = React.useState([]);
+
+  React.useEffect(() => {
+    async function fetchData() {
+      try {
+        const url = "/app/dash/offers/get/";
+        const response = await fetch(url, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        const data = await response.json();
+        //   console.log(data.data);
+
+        // Handle success or show an alert
+        if (data.success === true) {
+          setTABLE_ROWS(data.data);
+        } else console.log("error");
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchData(); // Call the fetchData function when the component mounts
+  }, []);
+
   const tables = [];
 
   for (let i = 0; i < TABLE_ROWS.length; i++) {

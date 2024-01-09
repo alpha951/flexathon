@@ -238,7 +238,7 @@ export default function Form() {
                 variant='h6'
                 color='blue-gray'
                 className='-mb-5 -mt-2 text-left'>
-                Display rate of Interest
+                Display Rate of Interest
               </Typography>
               <Input
                 type='text'

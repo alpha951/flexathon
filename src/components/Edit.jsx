@@ -16,6 +16,20 @@ import React from "react";
 
 // import { useLocation } from "react-router-dom";
 
+function formatDate(inputDate) {
+  var day = inputDate.getDate();
+  var month = inputDate.getMonth() + 1; // Month is zero-based
+  var year = inputDate.getFullYear();
+
+  // Format day and month to have leading zeros if needed
+  day = day < 10 ? "0" + day : day;
+  month = month < 10 ? "0" + month : month;
+
+  // Create the formatted date string in "dd/mm/yyyy" format
+  var formattedDate = day + "/" + month + "/" + year;
+  return formattedDate;
+}
+
 export default function Form({ selectedRow }) {
   // const location = useLocation();
   // const props = location.state && location.state.rowData;
@@ -53,6 +67,8 @@ export default function Form({ selectedRow }) {
   const handleSubmit = async () => {
     console.log(formData);
     try {
+      formData.offerStartDate = formatDate(formData.offerStartDate);
+      formData.offerEndDate = formatDate(formData.offerEndDate);
       console.log(JSON.stringify(formData));
       const url = "/app/dash/offers/update";
       const response = await fetch(url, {

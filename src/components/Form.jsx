@@ -10,7 +10,6 @@ import {
   Option,
 } from "@material-tailwind/react";
 
-
 export default function Form() {
   return (
     <>

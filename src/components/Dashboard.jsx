@@ -112,7 +112,6 @@ const TABLE_ROWS = [
   },
 ];
 
-
 /*
   lid, mid, offtype, tenure, int_rate, disp_rate, start_date, end_date, status
 */
@@ -175,62 +174,64 @@ export default function Dashboard() {
                     : "p-4 border-b border-blue-gray-50";
 
                   return (
-                    <tr key={id}>
-                      <td className={classes}>
-                        <div className='flex items-center gap-3'>
+                    <>
+                      <tr key={id}>
+                        <td className={classes}>
+                          <div className='flex items-center gap-3'>
+                            <Typography
+                              variant='small'
+                              color='blue-gray'
+                              className='font-normal'>
+                              {id}
+                            </Typography>
+                          </div>
+                        </td>
+                        <td className={classes}>
                           <Typography
                             variant='small'
                             color='blue-gray'
                             className='font-normal'>
-                            {id}
+                            {merchantId}
                           </Typography>
-                        </div>
-                      </td>
-                      <td className={classes}>
-                        <Typography
-                          variant='small'
-                          color='blue-gray'
-                          className='font-normal'>
-                          {merchantId}
-                        </Typography>
-                      </td>
-                      <td className={classes}>
-                        <Typography
-                          variant='small'
-                          color='blue-gray'
-                          className='font-normal'>
-                          {lenderId}
-                        </Typography>
-                      </td>
-                      <td className={classes}>
-                        <Typography
-                          variant='small'
-                          color='blue-gray'
-                          className='font-normal'>
-                          {tenure}
-                        </Typography>
-                      </td>
-                      <td className={classes}>
-                        <Typography
-                          variant='small'
-                          color='blue-gray'
-                          className='font-bold'>
-                          {offerType}
-                        </Typography>
-                      </td>
+                        </td>
+                        <td className={classes}>
+                          <Typography
+                            variant='small'
+                            color='blue-gray'
+                            className='font-normal'>
+                            {lenderId}
+                          </Typography>
+                        </td>
+                        <td className={classes}>
+                          <Typography
+                            variant='small'
+                            color='blue-gray'
+                            className='font-normal'>
+                            {tenure}
+                          </Typography>
+                        </td>
+                        <td className={classes}>
+                          <Typography
+                            variant='small'
+                            color='blue-gray'
+                            className='font-bold'>
+                            {offerType}
+                          </Typography>
+                        </td>
 
-                      <td className={classes}>
-                        <Dialog offerStatus={offerStatus} />
-                      </td>
-                      <td className={classes}>
-                        <button>
-                          <Tooltip content='Edit'>
-                            <PencilIcon className='h-4 w-4' />
-                          </Tooltip>
-                        </button>
-                      </td>
-                      {/* <Expand /> */}
-                    </tr>
+                        <td className={classes}>
+                          <Dialog offerStatus={offerStatus} />
+                        </td>
+                        <td className={classes}>
+                          <button>
+                            <Tooltip content='Edit'>
+                              <PencilIcon className='h-4 w-4' />
+                            </Tooltip>
+                          </button>
+                        </td>
+                        {/* <Expand /> */}
+                      </tr>
+                    </>
                   );
                 }
               )}

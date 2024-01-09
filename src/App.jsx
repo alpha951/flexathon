@@ -9,11 +9,13 @@ function App() {
   return (
     <>
       <Router>
-        <Navbar />
-        <Routes>
-          <Route path='/' element={<Form />} />
-          <Route path='/dashboard' element={<Dashboard />} />
-        </Routes>
+        <div className="container">
+          <Navbar />
+          <Routes>
+            <Route path='/' element={<Form />} />
+            <Route path='/dashboard' element={<Dashboard />} />
+          </Routes>
+        </div>
       </Router>
     </>
   );

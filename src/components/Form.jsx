@@ -19,6 +19,64 @@ export default function Form() {
   const [merchant, setMerchant] = React.useState([]);
   // const [loading, setLoading] = React.useState(true);
 
+  const [formData, setFormData] = React.useState({
+    lenderId: "",
+    merchantId: "",
+    offerType: "",
+    interestRate: "",
+    displayInterestRate: "",
+    tenure: "",
+    minLoanAmount: "",
+    maxLoanAmount: "",
+    offerStartDate: "",
+    offerEndDate: "",
+  });
+
+  const handleSelectLenderChange = (e) => {
+    console.log(e);
+    setFormData((prevData) => ({ ...prevData, ["lenderId"]: e }));
+  };
+  const handleSelectMerchantChange = (e) => {
+    console.log(e);
+    setFormData((prevData) => ({ ...prevData, ["merchantId"]: e }));
+  };
+
+  const handleSelectOfferTypeChange = (e) => {
+    console.log(e);
+    setFormData((prevData) => ({ ...prevData, ["offerType"]: e }));
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
+  };
+
+  const handleSubmit = async () => {
+    // Validate age
+    try {
+      console.log(JSON.stringify(formData));
+      const url = "";
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+      console.log(data.error.explanation);
+
+      // Handle success or show an alert
+      if (data.success === true) toast.success(data.message);
+      else toast.error(data.error.explanation);
+    } catch (error) {
+      toast.error("Something went wrong!");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   React.useEffect(() => {
     async function fetchData() {
       try {
@@ -106,7 +164,11 @@ export default function Form() {
                 className='-mb-3 -mt-2 text-left'>
                 Lender Name
               </Typography>
-              <Select color='zinc-400' label='Select Lender'>
+              <Select
+                color='zinc-400'
+                label='Select Lender'
+                value={formData.lenderId}
+                onChange={handleSelectLenderChange}>
                 {lender.map((item) => (
                   <Option
                     key={item.lenderId}
@@ -123,7 +185,11 @@ export default function Form() {
                 className='-mb-5 -mt-2 text-left'>
                 Merchant Name
               </Typography>
-              <Select color='zinc-400' label='Select Merchant'>
+              <Select
+                color='zinc-400'
+                label='Select Merchant'
+                value={formData.merchantId}>
+                onChange={handleSelectMerchantChange}>
                 {merchant.map((item) => (
                   <Option
                     key={item.merchantId}
@@ -148,6 +214,8 @@ export default function Form() {
                 labelProps={{
                   className: "before:content-none after:content-none",
                 }}
+                value={formData.interestRate}
+                onChange={handleChange}
               />
               <Typography
                 variant='h6'
@@ -163,6 +231,8 @@ export default function Form() {
                 labelProps={{
                   className: "before:content-none after:content-none",
                 }}
+                value={formData.displayInterestRate}
+                onChange={handleChange}
               />
 
               <Typography
@@ -179,6 +249,8 @@ export default function Form() {
                 labelProps={{
                   className: "before:content-none after:content-none",
                 }}
+                value={formData.tenure}
+                onChange={handleChange}
               />
               <Typography
                 variant='h6'
@@ -194,6 +266,8 @@ export default function Form() {
                 labelProps={{
                   className: "before:content-none after:content-none",
                 }}
+                value={formData.maxLoanAmount}
+                onChange={handleChange}
               />
               <Typography
                 variant='h6'
@@ -209,6 +283,7 @@ export default function Form() {
                 labelProps={{
                   className: "before:content-none after:content-none",
                 }}
+                value={formData.minLoanAmount}
               />
               <Typography
                 variant='h6'
@@ -224,6 +299,8 @@ export default function Form() {
                 labelProps={{
                   className: "before:content-none after:content-none",
                 }}
+                value={formData.offerStartDate}
+                onChange={handleChange}
               />
 
               <Typography
@@ -240,6 +317,8 @@ export default function Form() {
                 labelProps={{
                   className: "before:content-none after:content-none",
                 }}
+                value={formData.offerEndDate}
+                onChange={handleChange}
               />
 
               <Typography
@@ -248,42 +327,43 @@ export default function Form() {
                 className='-mb-2 -mt-2 text-left'>
                 Offer Type
               </Typography>
-              <Select color='zinc-400' label='Select Offer type'>
-                <Option value='1' className='text-left'>
+              <Select
+                color='zinc-400'
+                label='Select Offer type'
+                value={formData.offerType}
+                onChange={handleSelectOfferTypeChange}>
+                <Option value='NO_COST_EMI' className='text-left'>
                   No Cost EMI
                 </Option>
-                <Option value='2' className='text-left'>
-                  Instant Cashback
+                <Option value='INSTANT' className='text-left'>
+                  Instant Discount
                 </Option>
-                <Option value='3' className='text-left'>
+                <Option value='CASHBACK' className='text-left'>
                   Deferred Cashback
                 </Option>
-                <Option value='4' className='text-left'>
+                <Option value='NO_OFFER' className='text-left'>
                   No Offer
                 </Option>
               </Select>
 
-              {/* <Typography
+              <Typography
                 variant='h6'
                 color='blue-gray'
                 className='-mb-2 -mt-2 text-left'>
                 Funded By
               </Typography>
               <Select color='zinc-400' label='Select Funding type'>
-                <Option value='1' className='text-left'>
+                <Option value='lender' className='text-left'>
                   Lender
                 </Option>
-                <Option value='2' className='text-left'>
+                <Option value='merchant' className='text-left'>
                   Merchant
                 </Option>
-                <Option value='3' className='text-left'>
-                  Flexmoney
-                </Option>
-              </Select> */}
+              </Select>
             </div>
           </CardBody>
           <CardFooter>
-            <Button className='-mt-10' fullWidth>
+            <Button className='-mt-10' fullWidth onClick={handleSubmit}>
               Update
             </Button>
           </CardFooter>

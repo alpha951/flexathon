@@ -1,4 +1,4 @@
-import Dialog from "./Dialog";
+// import Dialog from "./Dialog";
 // import Expand from "./Expand";
 
 import {
@@ -16,6 +16,7 @@ import {
   IconButton,
   Tooltip,
   Input,
+  Chip,
 } from "@material-tailwind/react";
 
 const TABLE_HEAD = [
@@ -494,7 +495,30 @@ export default function Dashboard() {
                         </td>
 
                         <td className={classes}>
-                          <Dialog offerStatus={status} />
+                          {/* <Dialog offerStatus={status} /> */}
+                          <Tooltip content='Toggle offer status'>
+                            {status === "ACTIVE" ? (
+                              <Chip
+                                variant='ghost'
+                                color='green'
+                                size='sm'
+                                value='Active'
+                                icon={
+                                  <span className="mx-auto mt-1 block h-2 w-2 rounded-full bg-green-900 content-['']" />
+                                }
+                              />
+                            ) : (
+                              <Chip
+                                variant='ghost'
+                                color='red'
+                                size='sm'
+                                value='Inactive'
+                                icon={
+                                  <span className="mx-auto mt-1 block h-2 w-2 rounded-full bg-red-900 content-['']" />
+                                }
+                              />
+                            )}
+                          </Tooltip>
                         </td>
                         <td className={classes}>
                           <button>

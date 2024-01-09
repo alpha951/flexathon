@@ -263,7 +263,7 @@ export default function Form() {
                 </Option>
               </Select>
 
-              <Typography
+              {/* <Typography
                 variant='h6'
                 color='blue-gray'
                 className='-mb-2 -mt-2 text-left'>
@@ -279,7 +279,7 @@ export default function Form() {
                 <Option value='3' className='text-left'>
                   Flexmoney
                 </Option>
-              </Select>
+              </Select> */}
             </div>
           </CardBody>
           <CardFooter>

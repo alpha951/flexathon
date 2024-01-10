@@ -46,7 +46,7 @@ export default function Dashboard({ setSelectedRow }) {
   React.useEffect(() => {
     async function fetchData() {
       try {
-        const url = "https://localhost.instacred.me/app/dash/offers/get";
+        const url = "https://test.instacred.me/app/dash/offers/get";
         const response = await fetch(url, {
           method: "POST",
           headers: {

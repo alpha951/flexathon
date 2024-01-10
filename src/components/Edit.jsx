@@ -93,7 +93,7 @@ export default function Form({ selectedRow }) {
       formData.offerStartDate = formatDate(formData.offerStartDate);
       formData.offerEndDate = formatDate(formData.offerEndDate);
       console.log(JSON.stringify(formData));
-      const url = "https://localhost.instacred.me/app/dash/offers/update";
+      const url = "https://test.instacred.me/app/dash/offers/update";
       const response = await fetch(url, {
         method: "POST",
         headers: {

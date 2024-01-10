@@ -10,13 +10,17 @@ import {
   CardFooter,
   Select,
   Option,
+  input,
 } from "@material-tailwind/react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import React from "react";
 
 // import { useLocation } from "react-router-dom";
 
 function formatDate(inputDate) {
+  inputDate = new Date(inputDate);
   var day = inputDate.getDate();
   var month = inputDate.getMonth() + 1; // Month is zero-based
   var year = inputDate.getFullYear();
@@ -67,6 +71,25 @@ export default function Form({ selectedRow }) {
   const handleSubmit = async () => {
     console.log(formData);
     try {
+      if (
+        formData.lenderId === "" ||
+        formData.merchantId === "" ||
+        formData.offerType === "" ||
+        formData.interestRate === "" ||
+        formData.displayInterestRate === "" ||
+        formData.tenure === "" ||
+        formData.minLoanAmount === "" ||
+        formData.maxLoanAmount === "" ||
+        formData.offerStartDate === "" ||
+        formData.offerEndDate === "" ||
+        formData.funding === ""
+      ) {
+        toast.error("Please fill all the fields", {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+        return;
+      }
+
       formData.offerStartDate = formatDate(formData.offerStartDate);
       formData.offerEndDate = formatDate(formData.offerEndDate);
       console.log(JSON.stringify(formData));
@@ -81,6 +104,13 @@ export default function Form({ selectedRow }) {
 
       const data = await response.json();
       console.log(data.error.explanation);
+      if (data.success === true) {
+        toast.success(data.message);
+      } else {
+        toast.error("Something Went wrong" + data.error.explanation, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+      }
 
       // Handle success or show an alert
     } catch (error) {
@@ -169,7 +199,7 @@ export default function Form({ selectedRow }) {
                 variant='h6'
                 color='blue-gray'
                 className='-mb-5 -mt-2 text-left'>
-                Display rate of Interest
+                Display Rate of Interest
               </Typography>
               <Input
                 type='text'

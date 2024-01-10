@@ -655,12 +655,15 @@ export default function Form() {
       if (data.success === true) {
         toast.success(data.message);
       } else {
-        toast.error("Something Went wrong" + data.error.explanation, {
+        toast.error("Something Went wrong" + data.data, {
           position: toast.POSITION.TOP_RIGHT,
         });
       }
       // Handle success or show an alert
     } catch (error) {
+      toast.error("Something Went wrong", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
       console.log(error);
     } finally {
       // setLoading(false);

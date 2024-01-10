@@ -107,13 +107,14 @@ export default function Form({ selectedRow }) {
       if (data.success === true) {
         toast.success(data.message);
       } else {
-        toast.error("Something Went wrong" + data.error.explanation, {
+        toast.error("Something Went wrong" + data.data, {
           position: toast.POSITION.TOP_RIGHT,
         });
       }
 
       // Handle success or show an alert
     } catch (error) {
+      toast.error("Something Went wrong");
       console.log(error);
     } finally {
       // setLoading(false);
@@ -358,6 +359,7 @@ export default function Form({ selectedRow }) {
               Update
             </Button>
           </CardFooter>
+          <ToastContainer />
         </form>
       </Card>
     </>

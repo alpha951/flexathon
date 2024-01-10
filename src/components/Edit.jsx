@@ -111,7 +111,6 @@ export default function Form({ selectedRow }) {
           position: toast.POSITION.TOP_RIGHT,
         });
       }
-
       // Handle success or show an alert
     } catch (error) {
       toast.error("Something Went wrong");

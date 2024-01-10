@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const lenderData = {
   success: true,
   code: 0,
@@ -640,7 +641,7 @@ export default function Form() {
       formData.offerStartDate = formatDate(formData.offerStartDate);
       formData.offerEndDate = formatDate(formData.offerEndDate);
       console.log(JSON.stringify(formData));
-      const url = "/app/dash/offers/insert";
+      const url = "https://localhost.instacred.me/app/dash/offers/insert";
       const response = await fetch(url, {
         method: "POST",
         headers: {
@@ -728,7 +729,7 @@ export default function Form() {
         shadow={true}
         className='w-auto mt-10'
         style={{}}>
-        <CardHeader
+        {/* <CardHeader
           variant='gradient'
           color='gray'
           floated={false}
@@ -737,7 +738,7 @@ export default function Form() {
           <Typography variant='h5' color='white'>
             Offer Management
           </Typography>
-        </CardHeader>
+        </CardHeader> */}
         <form className='mt-5 mb-10 w-auto max-w-screen-lg sm:w-96 '>
           <CardBody className='flex flex-col gap-4 -mt-9 '>
             <div className='mb-1 flex flex-col gap-4'>

@@ -6,6 +6,8 @@ import {
   IconButton,
 } from "@material-tailwind/react";
 
+import logo from "../assets/FLEXMONEY.png";
+
 export default function StickyNavbar() {
   const [openNav, setOpenNav] = React.useState(false);
 
@@ -53,6 +55,7 @@ export default function StickyNavbar() {
             <br />
             Admin Dashboard
           </Typography>
+          <img src={logo} className='h-12 w-48' alt='logo'></img>
           <div className='flex items-center gap-4'>
             <div className='mr-4 hidden lg:block'>{navList}</div>
             <IconButton

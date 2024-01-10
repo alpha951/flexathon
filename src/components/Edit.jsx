@@ -43,7 +43,7 @@ export default function Form({ selectedRow }) {
     lenderId: props.lenderId,
     merchantId: props.merchantId,
     offerType: props.offerType,
-    interestRate: props.interestRate,
+    interestRate: props.effectiveInterestRate,
     displayInterestRate: props.displayInterestRate,
     tenure: props.tenure,
     minLoanAmount: props.minLoanAmount,
@@ -93,7 +93,7 @@ export default function Form({ selectedRow }) {
       formData.offerStartDate = formatDate(formData.offerStartDate);
       formData.offerEndDate = formatDate(formData.offerEndDate);
       console.log(JSON.stringify(formData));
-      const url = "/app/dash/offers/update";
+      const url = "https://localhost.instacred.me/app/dash/offers/update";
       const response = await fetch(url, {
         method: "POST",
         headers: {
@@ -127,16 +127,16 @@ export default function Form({ selectedRow }) {
         shadow={true}
         className='w-auto mt-10'
         style={{}}>
-        <CardHeader
+        {/* <CardHeader
           variant='gradient'
           color='gray'
           floated={false}
           className='mb-1 grid h-14	place-items-center'
           style={{ width: "40%", margin: "0 auto" }}>
           <Typography variant='h5' color='white'>
-            Edit Product
+            Offer Management
           </Typography>
-        </CardHeader>
+        </CardHeader> */}
         <form className='mt-5 mb-10 w-auto max-w-screen-lg sm:w-96 '>
           <CardBody className='flex flex-col gap-4 -mt-9 '>
             <div className='mb-1 flex flex-col gap-4'>

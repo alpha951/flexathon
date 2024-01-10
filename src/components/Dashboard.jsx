@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 // import Dialog from "./Dialog";
 // import Expand from "./Expand";
@@ -45,9 +46,9 @@ export default function Dashboard({ setSelectedRow }) {
   React.useEffect(() => {
     async function fetchData() {
       try {
-        const url = "/app/dash/offers/get/";
+        const url = "https://localhost.instacred.me/app/dash/offers/get";
         const response = await fetch(url, {
-          method: "GET",
+          method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
@@ -109,15 +110,51 @@ export default function Dashboard({ setSelectedRow }) {
       lenderId: "12",
       lenderName: "HDFC",
       merchantId: "4234",
-      merchantName: "doinsd",
+      merchantName: "Ethos Offline",
       offerType: "CASHBACK",
-      minLoanAmount: "slkmmd",
-      maxLoanAmount: "sdlknld",
-      offerStartDate: "dslk ",
-      offerEndDate: "",
+      minLoanAmount: "500",
+      maxLoanAmount: "10000",
+      offerStartDate: "12/12/2023",
+      offerEndDate: "24/01/2024",
       creditSchemeVariantId: "3",
       tenure: "12",
-      tenureType: "2",
+      tenureType: "MONTHS",
+      status: "ACTIVE",
+      effectiveInterestRate: "13",
+      displayEffectiveInterestRate: "1",
+    },
+    {
+      creditSchemeId: "3232",
+      lenderId: "12",
+      lenderName: "ICICI",
+      merchantId: "4234",
+      merchantName: "Batteryguru",
+      offerType: "NO COST EMI",
+      minLoanAmount: "800",
+      maxLoanAmount: "95000",
+      offerStartDate: "05/01/2024",
+      offerEndDate: "12/02/2024",
+      creditSchemeVariantId: "3",
+      tenure: "12",
+      tenureType: "MONTHS",
+      status: "INACTIVE",
+      effectiveInterestRate: "13",
+      displayEffectiveInterestRate: "1",
+    },
+    {
+      creditSchemeId: "3232",
+      lenderId: "12",
+      lenderName: "IDFC First Bank",
+      merchantId: "4234",
+      merchantName: "UpTop",
+      offerType: "DEFERRED CASHBACK",
+      minLoanAmount: "780",
+      maxLoanAmount: "90000",
+      offerStartDate: "12/12/2023",
+      offerEndDate: "24/01/2024",
+      creditSchemeVariantId: "3",
+      tenure: "12",
+      tenureType: "MONTHS",
       status: "ACTIVE",
       effectiveInterestRate: "13",
       displayEffectiveInterestRate: "1",
@@ -191,6 +228,7 @@ export default function Dashboard({ setSelectedRow }) {
                     offerStartDate,
                     offerEndDate,
                     effectiveInterestRate,
+                    displayInterestRate,
                     // eslint-disable-next-line no-unused-vars
                     creditSchemeVariantId,
                   },
